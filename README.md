@@ -8,12 +8,20 @@ auto router = components.httpRouter.getObject();
 oatpppre::StaticFilesHandler::mountAtRoute(router, "/files/*", "."); // Add the static file handle
 ```
 
+See full example in [examples/staticfileserver.cpp](./examples/staticfileserver.cpp)
+
+### Add it to your project
+In `.nxxm/deps` :
+```json
+{
+  "cpp-pre/oatpppre-staticfileserver" : {}
+}
+```
+
 ## Compiling
 ```sh
 nxxm . -t linux-cxx17
 ```
-
-See full example in [examples/staticfileserver.cpp](./examples/staticfileserver.cpp)
 
 ## Disclaimer
 This project is made by [tipi.build](http://tipi.build) and works in conjunction with oatpp but isn't related by any means to the oatpp authors.
