@@ -4,6 +4,10 @@ This is a simple static file server for oatpp in order to correctly distribute f
 ## Usage
 Add the following to your oatpp app : 
 ```cpp
+#include <oatpppre/StaticFilesHandler.hpp>
+
+...
+
 auto router = components.httpRouter.getObject();
 oatpppre::StaticFilesHandler::mountAtRoute(router, "/files/*", "."); // Add the static file handle
 ```

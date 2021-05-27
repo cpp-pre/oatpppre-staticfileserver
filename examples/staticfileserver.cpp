@@ -13,7 +13,7 @@ int main(int argc, const char * argv[]) {
   
   auto router = components.httpRouter.getObject();
   
-  oatpppre::StaticFilesHandler::mountAtRoute(router, "/files/*", "."); // Add the static file handler
+  oatpppre::StaticFilesHandler::mountAtRoute(router, "/*", "."); // Add the static file handler
   
   OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
   OATPP_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, connectionProvider);

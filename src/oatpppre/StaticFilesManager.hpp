@@ -5,6 +5,7 @@
 
 #include <unordered_map>
 #include <string>
+#include <utility>
 
 namespace oatpppre {
 
@@ -17,7 +18,7 @@ namespace oatpppre {
       : m_basePath(basePath)
     {}
     
-    oatpp::String getFile(const oatpp::String& path);
+    std::pair<oatpp::String,oatpp::String> getFile(const oatpp::String& path);
     
     oatpp::String guessMimeType(const oatpp::String& filename);
     

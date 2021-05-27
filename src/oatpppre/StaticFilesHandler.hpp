@@ -41,14 +41,14 @@ namespace oatpppre {
      */
     std::shared_ptr<OutgoingResponse> handle(const std::shared_ptr<IncomingRequest>& request) override {
       auto filename = request->getPathTail();
-      auto content_type = m_filesManager.guessMimeType(filename);
       OATPP_LOGD("Server", "Looking for File %s.", filename->c_str());
+
       auto file = m_filesManager.getFile(filename);
 
-      if (file != nullptr) {
-        OATPP_LOGD("Server", "File %s found returning it with content type %s", filename->c_str(), content_type->c_str());
-        auto response = ResponseFactory::createResponse(Status::CODE_200, file);
-        response->putHeader(Header::CONTENT_TYPE, content_type);
+      if (file.second != nullptr) {
+        OATPP_LOGD("Server", "File %s found returning it with content type %s", filename->c_str(), file.first->c_str());
+        auto response = ResponseFactory::createResponse(Status::CODE_200, file.second);
+        response->putHeader(Header::CONTENT_TYPE, file.first);
         return response;
       } else {
         return ResponseFactory::createResponse(Status::CODE_404, filename + " - Not found");

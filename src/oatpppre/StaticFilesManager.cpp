@@ -9,20 +9,29 @@
 
 using namespace oatpppre;
 
-oatpp::String StaticFilesManager::getFile(const oatpp::String& path) {
+//! \return a pair consisting of mimetype and content
+std::pair<oatpp::String,oatpp::String> StaticFilesManager::getFile(const oatpp::String& path) {
   if(!path) {
-    return nullptr;
+    return std::make_pair(nullptr, nullptr);
   }
   oatpp::String filename = m_basePath + "/" + path;
 
   if (std::filesystem::is_directory(filename->c_str())) {
-    return nullptr;
+    OATPP_LOGD("StaticFilesManager::getFile", "File %s is directory", filename->c_str());
+    filename = m_basePath + "/" + path + "/index.html";
+    OATPP_LOGD("StaticFilesManager::getFile", "Changing for index : %s", filename->c_str());
   } 
+
+  if (!std::filesystem::exists(filename->c_str())) {
+    return std::make_pair(nullptr, nullptr);
+  }
+
+  auto mimeType = guessMimeType(filename->c_str());
 
   std::error_condition ec;
   auto file_content = pre::file::to_string(filename->c_str(), ec);
   oatpp::String file = file_content.data();
-  return (ec) ? nullptr : file;
+  return std::make_pair(mimeType, (ec) ? nullptr : file);
 }
 
 oatpp::String StaticFilesManager::guessMimeType(const oatpp::String& filename) {
