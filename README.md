@@ -3,9 +3,14 @@ This is a simple static file server for oatpp in order to correctly distribute f
 
 ## Usage
 Add the following to your oatpp app : 
-```
+```cpp
 auto router = components.httpRouter.getObject();
 oatpppre::StaticFilesHandler::mountAtRoute(router, "/files/*", "."); // Add the static file handle
+```
+
+## Compiling
+```sh
+nxxm . -t linux-cxx17
 ```
 
 See full example in [examples/staticfileserver.cpp](./examples/staticfileserver.cpp)
