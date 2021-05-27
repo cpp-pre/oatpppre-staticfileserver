@@ -6,7 +6,7 @@
 #include <string>
 #include <map>
 
-namespace mime {
+namespace oatpppre::mime {
 
    static inline const std::map<std::string, const char*> mime_types{
     { ".none", "text/html"}
