@@ -1,4 +1,0 @@
-{
-   "oatpp/oatpp" : { "s" : ["src"], "x" : ["test"] }
-   , "cpp-pre/file" : {}
-}
