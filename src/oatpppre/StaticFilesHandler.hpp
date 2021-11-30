@@ -1,6 +1,7 @@
 #pragma once
 
 #include "oatpp/web/server/api/ApiController.hpp"
+#include "oatpp/web/server/HttpRouter.hpp"
 
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"
 
@@ -20,12 +21,12 @@ namespace oatpppre {
 
     /**
      * \brief Serves files at the given url
-     * \param route the route must end with a globbing pattern ( e.g. "/resources/*")
+     * \param route the route must end with a globbing pattern ( e.g. "/resources/ *")
      * \param basePath path on disk where the files are located
      */
     static inline auto mountAtRoute(
       std::shared_ptr<oatpp::web::server::HttpRouter> router, oatpp::String route, oatpp::String basePath) {
-      OATPP_ASSERT(*route->std_str().rbegin() == '*');
+      OATPP_ASSERT(*route->rbegin() == '*');
       auto staticFileHandler = std::make_shared<StaticFilesHandler>(route, basePath);
       router->route("GET", route, staticFileHandler);
       return staticFileHandler;
