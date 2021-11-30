@@ -15,7 +15,7 @@ oatpppre::StaticFilesHandler::mountAtRoute(router, "/files/*", "."); // Add the 
 See full example in [examples/staticfileserver.cpp](./examples/staticfileserver.cpp)
 
 ### Add it to your project
-In `.nxxm/deps` :
+In `.tipi/deps` :
 ```json
 {
   "cpp-pre/oatpppre-staticfileserver" : {}
@@ -24,7 +24,7 @@ In `.nxxm/deps` :
 
 ## Compiling
 ```sh
-nxxm . -t linux-cxx17
+tipi . -t linux-cxx17
 ```
 
 ## Disclaimer
